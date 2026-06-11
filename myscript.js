@@ -55,6 +55,7 @@ function playGame() {
         }
     }
 
+    /*
     for(i = 0; i < 5; i++){
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
@@ -63,7 +64,25 @@ function playGame() {
         if (result === 1) humanScore++;
         if (result === -1) computerScore++;
     }
+    */
+
     console.log(`Final Score: You: ${humanScore}, Computer: ${computerScore}`);
 }
+
+// Button Event Listeners
+const rock = document.querySelector("#rock");
+rock.addEventListener("click", () => {
+    alert("rock");
+});
+
+const paper = document.querySelector("#paper");
+paper.addEventListener("click", () => {
+    alert("paper");
+});
+
+const scissors = document.querySelector("#scissors");
+scissors.addEventListener("click", () => {
+    alert("scissors");
+});
 
 playGame();
