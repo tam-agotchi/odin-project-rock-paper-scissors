@@ -66,23 +66,36 @@ function playGame() {
     }
     */
 
+    /*
+    // Button Event Listeners
+
+    const rock = document.querySelector("#rock");
+    rock.addEventListener("click", () => {
+        const result = playRound("rock", getComputerChoice())
+        if (result === 1) humanScore++;
+        if (result === -1) computerScore++;
+        console.log(`${humanScore}`)
+    });
+
+    const paper = document.querySelector("#paper");
+    paper.addEventListener("click", () => {
+        playRound("scissors", getComputerChoice())
+    });
+
+    const scissors = document.querySelector("#scissors");
+    scissors.addEventListener("click", () => {
+        alert("scissors");
+    });
+
     console.log(`Final Score: You: ${humanScore}, Computer: ${computerScore}`);
+    */
+
+    const buttons = document.querySelectorAll('.button-container')
+    buttons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            console.log(event.target.innerText)
+        })
+    })
 }
-
-// Button Event Listeners
-const rock = document.querySelector("#rock");
-rock.addEventListener("click", () => {
-    alert("rock");
-});
-
-const paper = document.querySelector("#paper");
-paper.addEventListener("click", () => {
-    alert("paper");
-});
-
-const scissors = document.querySelector("#scissors");
-scissors.addEventListener("click", () => {
-    alert("scissors");
-});
 
 playGame();
