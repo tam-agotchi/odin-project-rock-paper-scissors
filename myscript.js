@@ -15,24 +15,10 @@ function getComputerChoice() {
     }
 }
 
-/*
-function getHumanChoice() {
-    let input = prompt("Rock, paper, or scissors?");
-    let choice = input.toLowerCase();
-    if (choice == "rock") {
-        console.log('rock');
-        return('rock');
-    }
-    else if (choice == "paper") {
-        console.log('paper');
-        return('paper');
-    }
-    else if (choice == "scissors") {
-        console.log('scissors');
-        return('scissors');
-    }
+function updateScoreboard(humanScore, computerScore) {
+    document.querySelector('.human_score').textContent = humanScore;
+    document.querySelector('.computer_score').textContent = computerScore;
 }
-*/
 
 function playGame() {
 
@@ -44,7 +30,7 @@ function playGame() {
             console.log("It's a tie!");
             return 0;
         }
-        if ((humanChoice == 'rock' && computerChoice == 'paper') || (humanChoice == 'paper' && computerChoice == 'scissors')
+        if ((humanChoice == 'rgitock' && computerChoice == 'paper') || (humanChoice == 'paper' && computerChoice == 'scissors')
         || (humanChoice =='scissors' && computerChoice == 'rock')) {
             console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
             return -1;
@@ -57,35 +43,24 @@ function playGame() {
         }
     }
 
-    /*
-    for(i = 0; i < 5; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        const result = playRound(humanSelection, computerSelection);
-        if (result === 1) humanScore++;
-        if (result === -1) computerScore++;
-    }
-    */
-
-    /*
-
-
-    console.log(`Final Score: You: ${humanScore}, Computer: ${computerScore}`);
-    */
-
     const buttons = document.querySelectorAll('.button-container')
     buttons.forEach(button => {
         button.addEventListener("click", (event) => {
             const humanSelection = event.target.innerText.toLowerCase()
             console.log(humanSelection)
             const result = playRound(humanSelection, getComputerChoice())
-            if (result === 1) humanScore++;
-            if (result === -1) computerScore++;
-
-            console.log(`You: ${humanScore}, Computer: ${computerScore}`)
+            if (humanScore < 5 && computerScore < 5) {
+                if (result === 1) humanScore++;
+                if (result === -1) computerScore++;
+                updateScoreboard(humanScore, computerScore)
+            } else if (humanScore == 5) {
+                console.log("u won!")
+            } else if (computerScore == 5) {
+                console.log("u lose")
+            }
         })
     })
+
 }
 
 playGame();
