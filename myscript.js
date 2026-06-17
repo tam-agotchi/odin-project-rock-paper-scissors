@@ -15,9 +15,18 @@ function getComputerChoice() {
     }
 }
 
+function updateMoves(humanMove, computerMove) {
+    document.querySelector('.human_move').textContent = humanMove;
+    document.querySelector('.computer_move').textContent = computerMove;
+}
+
 function updateScoreboard(humanScore, computerScore) {
     document.querySelector('.human_score').textContent = humanScore;
     document.querySelector('.computer_score').textContent = computerScore;
+}
+
+function capitalize(string) {
+    return (string[0].toUpperCase() + string.substring(1))
 }
 
 function playGame() {
@@ -27,12 +36,12 @@ function playGame() {
 
     function playRound(humanChoice, computerChoice) {
         if (humanChoice == computerChoice) {
-            console.log("It's a tie!");
+            document.querySelector('.veredict').textContent = "It's a tie!";
             return 0;
         }
         if ((humanChoice == 'rock' && computerChoice == 'paper') || (humanChoice == 'paper' && computerChoice == 'scissors')
         || (humanChoice =='scissors' && computerChoice == 'rock')) {
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+            document.querySelector('.veredict').textContent = "You lose! " + capitalize(computerChoice) + " beats " + humanChoice + "."
             return -1;
         } 
 
@@ -47,8 +56,11 @@ function playGame() {
     buttons.forEach(button => {
         button.addEventListener("click", (event) => {
             const humanSelection = event.target.innerText.toLowerCase()
-            console.log(humanSelection)
-            const result = playRound(humanSelection, getComputerChoice())
+            const computerSelection = getComputerChoice()
+
+            updateMoves(humanSelection, computerSelection)
+            
+            const result = playRound(humanSelection, computerSelection)
             if (humanScore < 5 && computerScore < 5) {
                 if (result === 1) humanScore++;
                 if (result === -1) computerScore++;
