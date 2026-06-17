@@ -30,7 +30,7 @@ function playGame() {
             console.log("It's a tie!");
             return 0;
         }
-        if ((humanChoice == 'rgitock' && computerChoice == 'paper') || (humanChoice == 'paper' && computerChoice == 'scissors')
+        if ((humanChoice == 'rock' && computerChoice == 'paper') || (humanChoice == 'paper' && computerChoice == 'scissors')
         || (humanChoice =='scissors' && computerChoice == 'rock')) {
             console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
             return -1;
