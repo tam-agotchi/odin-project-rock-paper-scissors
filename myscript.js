@@ -2,15 +2,12 @@ function getComputerChoice() {
     let num = Math.floor(Math.random() * 3)
     switch (num) {
         case 0:
-            console.log('rock');
             return('rock');
             break;
         case 1:
-            console.log('paper');
             return('paper');
             break;
         case 2:
-            console.log('scissors');
             return('scissors');
     }
 }
@@ -47,7 +44,7 @@ function playGame() {
 
         if((humanChoice == 'rock' && computerChoice == 'scissors') || (humanChoice =='paper' && computerChoice =='rock')
         || (humanChoice =='scissors' && computerChoice =='paper')) {
-            console.log(`You win! ${humanChoice} beats ${computerChoice}.`)
+            document.querySelector('.veredict').textContent = "You win! " + capitalize(humanChoice) + " beats " + computerChoice + "."
             return 1;
         }
     }
@@ -65,10 +62,12 @@ function playGame() {
                 if (result === 1) humanScore++;
                 if (result === -1) computerScore++;
                 updateScoreboard(humanScore, computerScore)
-            } else if (humanScore == 5) {
-                console.log("u won!")
-            } else if (computerScore == 5) {
-                console.log("u lose")
+                
+                if (humanScore == 5) {
+                    document.querySelector('.veredict').textContent = "First to 5, you win!"
+                } else if (computerScore == 5) {
+                document.querySelector('.veredict').textContent = "First to 5, computer wins!"
+                }
             }
         })
     })
